@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    {% block head %}
+    <title></title>
+    {% endblock %}
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Zilla+Slab:300">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+      <link rel="stylesheet" href="{% static 'recipes/style.css' %}" />
+
+  </head>
+  <body>
+    <nav class="navbar navbar-fixed-top navbar-expand-lg" role="navigation" id="topnav">
+      <a class="navbar-brand" href="#" style="color: #4C3F54">What Shall I Eat Tonight?</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'recipes:index' %}">Recipes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'plan:index' %}">Plan</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Shop</a>
+          </li>
+        </ul>
+        <ul class="nav justify-content-end">
+          <li class="nav-item">
+            <a href="{% url 'home:view_profile' %}" class="nav-link" style="padding-right: 2px;">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link disabled" style=" padding-right:0; padding-left:0;">/</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'home:logout' %}" class="nav-link" style="padding-left: 2px;">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row row-offcanvas row-offcanvas-left">
+        <nav class="col-xs-6 col-sm-2 sidebar-offcanvas" id="sidebar" role="navigation">
+          <div class="sidebar-nav">
+            <ul class="nav justify-content-start">
+              <li class="nav-item p-3">
+                <form>
+                  <input type="search" class="form-control" placeholder="Search Recipes" aria-label="Search Recipes">
+                </form>
+              </li>
+              <li class="nav-item p-3">
+                  <div class="form-group">
+                  <select id="inputCourse" class="form-control">
+                    <option selected>-Course</option>
+                    {% for course in courses %}
+                    <option value="{{ course.course }}">{{ course.course }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </li>
+              <li class="nav-item p-3">
+                <div class="form-group">
+                  <select id="inputTag" class="form-control">
+                    <option selected>-Tag</option>
+                    {% for tag in tags %}
+                    <option>{{ tag.tag }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <div class="col-xs-12 ml-sm-10 ml-4">
+          <br>
+          {% block body %}
+
+          {% endblock %}
+          </div>
+        </div>
+      </div>
+
+
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  </body>
+</html>

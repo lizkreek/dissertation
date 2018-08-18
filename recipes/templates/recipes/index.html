@@ -1,0 +1,29 @@
+{% extends 'recipes_base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block head %}
+    <title>Recipes Index</title>
+    {% endblock %}
+  </head>
+  <body>
+    {% block body %}
+    <a class="btn btn-md add-recipe" href="{% url 'recipes:add_recipe' %}" type="button">
+      Add Recipe
+     </a>
+      {% if recipe_list %}
+        <div class="card-deck mt-2">
+          {% for recipe in recipes %}
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{ recipe.title}}</h5>
+                <p class="card-text">{{ recipe.description }}</p>
+                <a href="{% url 'recipes:detail' recipe.id %}" class="btn login">View Details</a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endblock %}
+  </body>
+</html>

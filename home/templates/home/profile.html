@@ -1,0 +1,34 @@
+{% extends 'home_base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block head %}
+    <title>Profile</title>
+    {% endblock %}
+  </head>
+<body>
+  {% block body %}
+  <div class="row justify-content-around align-items-center mt-5 pt-5">
+    <div class="col-sm-4">
+      <h4 class="font-weight-bold">Account Information</h4>
+      <div class="row">
+        <label for="staticEmail" class="col-sm-4 col-form-label">Email</label>
+        <div class="col-sm-8">
+          {{ user.email }}
+        </div>
+      </div>
+      <div class="row">
+        <label for="staticUserName" class="col-sm-4 col-form-label">Username</label>
+        <div class="col-sm-8">
+          <p>{{ user.userprofile }}</p>
+        </div>
+      </div>
+        <div class="row mt-4">
+          <a href="{% url 'home:edit_profile' %}" type="button" class="btn login" name="changePassword">Edit Information</a>
+        </div>
+      </div>
+
+  </div>
+  {% endblock %}
+</body>
+</html>

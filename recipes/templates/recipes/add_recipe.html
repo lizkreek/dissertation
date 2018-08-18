@@ -1,0 +1,23 @@
+{% extends 'recipes_base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block head %}
+    <title>Add Recipe</title>
+    {% endblock %}
+  </head>
+  <body>
+    {% block body %}
+
+            <form method="post">
+              {{ form }}
+
+              <button type="submit" class="btn login mt-2 pt-2">Save</button>
+            </form>
+
+
+
+
+    {% endblock %}
+  </body>
+</html>
