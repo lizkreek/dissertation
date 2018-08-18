@@ -13,12 +13,12 @@
      </a>
       {% if recipe_list %}
         <div class="card-deck mt-2">
-          {% for recipe in recipes %}
+          {% for recipe in recipe_list %}
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">{{ recipe.title}}</h5>
                 <p class="card-text">{{ recipe.description }}</p>
-                <a href="{% url 'recipes:detail' recipe.id %}" class="btn login">View Details</a>
+                <a href="{% url 'recipes:detail' recipe.id %}" class="btn add-recipe">View Details</a>
               </div>
             </div>
           {% endfor %}

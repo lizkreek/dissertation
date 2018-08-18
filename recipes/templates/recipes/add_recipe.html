@@ -10,9 +10,10 @@
     {% block body %}
 
             <form method="post">
+              {% csrf_token %}
               {{ form }}
 
-              <button type="submit" class="btn login mt-2 pt-2">Save</button>
+              <button type="submit" class="btn add-recipe mt-2 pt-2">Save</button>
             </form>
 
 

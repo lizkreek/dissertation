@@ -1,0 +1,21 @@
+{% extends 'recipes_base.html' %}
+{% block body %}
+
+{% if submitbutton == 'Search' and request.GET.q != '' %}
+  {% if results %}
+
+    {% for result in results %}
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ result.title}}</h5>
+
+      </div>
+    </div>
+
+    {% endfor %}
+  {% else %}
+  No search results for this query
+  {% endif %}
+{% endif %}
+{% endblock %}

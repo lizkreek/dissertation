@@ -1,60 +1,18 @@
 {% extends 'recipes_base.html' %}
 
-<h1>{{ recipe.title }}</h1>
 
-<form method="post">
-  {% csrf_token %}
-  <div class="form-row">
-    <div class="form-group col-md-5 mb-3">
-      <label for="staticDescription">Description</label>
-      <input type="text" class="form-control" name="" value="{{ recipe.description }}">
-    </div>
-    <div class="form-group col-md-5 mb-3">
-      {% for ingredients in recipe.ingredients_set.all %}
-      <label for="staticIngredients">Ingredients</label>
-      <input type="text" class="form-control" id="ingredients{{ forloop.counter }}" value="{{ ingredients }}">
-      {% endfor %}
-    </div>
+{% block body %}
+
+<div class="card">
+  <div class="card-body">
+    <h3 class="">{{ recipe.title }}</h3>
+    <a href="{{ recipe.url }}">{{recipe.url}}</a>
+    <p>{{ recipe.ingredients }}</p>
+    <p>{{ recipe.tag }}</p>
+    <p>{{ recipe.course }}</p>
+    <a href="{% url 'recipes:update' recipe.id %}" class="btn add-recipe">Edit Recipe</a>
   </div>
-  <div class="form-row">
-    <div class="form-group col-md-3 mb-3">
-      <label for="staticPrepTime">Prep Time</label>
-      <input type="text" class="form-control" value="{{ recipe.prep_time }}">
-    </div>
-    <div class="form-group col-md-3 mb-3">
-      <label for="staticCookTime">Cook Time</label>
-      <input type="text" class="form-control" value="{{ recipe.cook_time }}">
-    </div>
-    <div class="form-group col-md-3 mb-3">
-      <label for="staticServings">Servings</label>
-      <input type="text" class="form-control" value="{{ recipe.servings }}">
-    </div>
-    <div class="form-group col-md-3 mb-3">
-      <label for="staticYields">Yields</label>
-      <input type="text" class="form-control" value="{{ recipe.yields }}">
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="staticDirections">Directions</label>
-      <input type="text" class="form-control" aria-describedby="inputGroup-sizing-lg" value="{{ recipe.directions }}">
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-4">
-      {% for course in course_list %}
-      <label for="inputCourse">Course</label>
-      <select class="form-control" id="inputCourse">
-        <option value="{{ recipe.course_set }}" selected></option>
-        <option value="{{ course.course }}"></option>
-      </select>
-      {% endfor %}
-    </div>
-    <div class="form-group col-md-4">
-      {% for tag in recipe.tag_set.all %}
-      <label for="staticTag">Tags</label>
-      <input type="text" class="form-control" id="tag{{ forloop.counter }}" value="{{ tag.tag_text}}">
-      {% endfor %}
-    </div>
-  </div>
-</form>
+</div>
+
+
+{% endblock %}

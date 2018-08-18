@@ -2,57 +2,73 @@ from django.shortcuts import render, redirect
 from django.http import Http404
 from django.views import generic
 from django.urls import reverse
+from django.db.models import Q
 from .forms import RecipeForm
 from .models import Recipe
-from itertools import chain
-
-
 
 
 class IndexView(generic.ListView):
     template_name = 'recipes/index.html'
-    queryset = Recipe.objects.all()
+    context_object_name = 'recipe_list'
 
-    def get_context_data(self, **kwargs):
-        pass
+    def get_queryset(self):
+        return Recipe.objects.all()
 
-class AddRecipeView(generic.TemplateView):
-    model = Recipe
+class AddRecipeView(generic.CreateView):
     template_name = 'recipes/add_recipe.html'
-    def get(self, request):
-        form = RecipeForm()
-        args = {'form': form,
-                }
-        return render(request, self.template_name, args)
+    form_class = RecipeForm
+    success_url = '/recipes/'
 
-class DetailView(generic.DetailView):
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        #It should return an HttpResponse.
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+class RecipeDetailView(generic.DetailView):
     model = Recipe
     template_name = 'recipes/detail.html'
-    queryset = Recipe.objects.all()
-
-    def get_context_data(self, **kwargs):
-        #import pdb; pdb.set_trace()
-        context = super().get_context_data(**kwargs)
-
-        return context
 
 
-#class RecipeView(generic.DetailView):
-#    model = Recipe
-#    template_name = 'recipes/add_recipe.html'
+class UpdateRecipeView(generic.UpdateView):
+    form_class =RecipeForm
+    model = Recipe
+    template_name = 'recipes/update_recipe.html'
+    success_url = '/recipes/'
+
+def searchRecipes(request):
+    if request.method == 'GET':
+        query = request.GET.get('q')
+
+        submitbutton = request.GET.get('submit')
+
+        if query is not None:
+            lookups = (Q(title__icontains=query) |
+                Q(course__iexact=query) | Q(tag__icontains=query))
+            results = Recipe.objects.filter(lookups).distinct()
+            context={'results': results, 'submitbutton': submitbutton}
+            return render(request, 'recipes/search.html', context)
+
+        else:
+            return render(request, 'recipes/search.html')
+
+    else:
+        return render(request, 'recipes/search.html')
 
 
+#class SearchView(generic.ListView):
+#    paginate_by = 20
 
-#    def post(self, request):
-#        form = RecipeForm(request.POST)
-#        if form.is_valid():
-#            recipe = form.save(commit=False)
-#            recipe.user = request.user
-#            recipe.save()
-#            text = form.cleaned_data['title', 'photo', 'description', 'prep_time', 'cook_time',
-#                'servings', 'yields', 'directions']
-#            form = RecipeForm()
-#            return redirect('recipes:index')
+#    def get_template_names(self):
+#        return ['recipes/search.html']
 
-#        args = {'form': form, 'text': text}
-#        return render(request, self.template_name, args)
+#    def get_queryset(self):
+#        query = self.request.GET.get('q')
+#        recipes = Recipe.objects.all()
+#        if query:
+#            recipes=recipes.filter(
+#                Q(title__icontains=query) |
+#                Q(tag__icontains=query) |
+#                Q(course__icontains=query)
+#            )
+#        return recipes

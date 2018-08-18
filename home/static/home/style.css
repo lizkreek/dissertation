@@ -1,0 +1,36 @@
+html, body {
+    box-sizing: border-box;
+}
+
+.card {
+    border: 2px solid #A1BE95;
+    background-color: #A1BE95;
+}
+
+.login {
+    background-color: #A1BE95;
+}
+
+.form-control {
+    border-color: #A1BE95;
+}
+
+.navbar {
+    background-color:#A1BE95;
+}
+
+.navbar a {
+    color: #4C3F54;
+}
+
+.card-img-top {
+    height: 80%;
+}
+
+.card-img {
+    height: 100%;
+}
+
+.card-title {
+    text-align: center;
+}

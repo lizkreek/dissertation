@@ -15,10 +15,10 @@ class RecipeForm(ModelForm):
             'class':'form-control',
         }
     ))
-    ingredients = forms.CharField(widget=forms.TextInput(
+    ingredients = forms.CharField(widget=forms.Textarea(
         attrs={
             'class':'form-control',
-        }
+    }
     ))
     tag = forms.CharField(widget=forms.TextInput(
         attrs={
@@ -27,13 +27,13 @@ class RecipeForm(ModelForm):
     ))
     COURSE_CHOICES = (
         (None, 'none'),
-        ('breakfast', 'Breakfast'),
-        ('brunch', 'Brunch'),
-        ('lunch', 'Lunch'),
-        ('dinner', 'Dinner'),
-        ('sides', 'Sides'),
-        ('snacks', 'Snacks'),
-        ('drinks', 'Drinks'),
+        ('Breakfast', 'Breakfast'),
+        ('Brunch', 'Brunch'),
+        ('Lunch', 'Lunch'),
+        ('Dinner', 'Dinner'),
+        ('Sides', 'Sides'),
+        ('Snacks', 'Snacks'),
+        ('Drinks', 'Drinks'),
     )
     course = forms.CharField(label="Course",
         widget=forms.Select(choices=COURSE_CHOICES,

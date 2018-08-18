@@ -24,14 +24,34 @@ html, body {
 
 .card-body {
     border: 2px solid #A1BE95;
+    background-color: #F7EFE2;
 }
 
-.login (
+#searching {
+  background-color: #4C3F54;
+  color: #F7EFE2;
+}
+
+.add-recipe {
     background-color: #A1BE95;
-  )
+    color: #4C3F54;
+}
+
+
 .form-control {
     border-color: #A1BE95;
 }
+
+#topnav {
+    background-color:#A1BE95;
+    border-bottom: 2px solid #F7EFE2;
+}
+
+#topnav a {
+    color: #4C3F54;
+}
+
+
 
 /*
 *Off Canvas

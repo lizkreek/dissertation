@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Zilla+Slab:300">
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-      <link rel="stylesheet" href="{% static 'recipes/style.css' %}" />
+      <link rel="stylesheet" href="{% static 'recipes/main.css' %}" />
 
   </head>
   <body>
@@ -54,34 +54,19 @@
           <div class="sidebar-nav">
             <ul class="nav justify-content-start">
               <li class="nav-item p-3">
-                <form>
-                  <input type="search" class="form-control" placeholder="Search Recipes" aria-label="Search Recipes">
-                </form>
+                <form method="GET" action="{% url 'recipes:search' %}"
+                  value="{{ request.GET.q }}">
+                  <input type="text" class="form-control" placeholder="Search Recipes"
+                    name="q" value="{{ request.GET.q }}">
               </li>
               <li class="nav-item p-3">
-                  <div class="form-group">
-                  <select id="inputCourse" class="form-control">
-                    <option selected>-Course</option>
-                    {% for course in courses %}
-                    <option value="{{ course.course }}">{{ course.course }}</option>
-                    {% endfor %}
-                  </select>
-                </div>
+                <input type="submit" name="submit" value="Search" class="btn" id="searching">
               </li>
-              <li class="nav-item p-3">
-                <div class="form-group">
-                  <select id="inputTag" class="form-control">
-                    <option selected>-Tag</option>
-                    {% for tag in tags %}
-                    <option>{{ tag.tag }}</option>
-                    {% endfor %}
-                  </select>
-                </div>
-              </li>
+              </form>
             </ul>
           </div>
         </nav>
-        <div class="col-xs-12 ml-sm-10 ml-4">
+        <div class="col-10 col-sm-10 col-lg-9 ml-2">
           <br>
           {% block body %}
 
