@@ -54,8 +54,7 @@
           <div class="sidebar-nav">
             <ul class="nav justify-content-start">
               <li class="nav-item p-3">
-                <form method="GET" action="{% url 'recipes:search' %}"
-                  value="{{ request.GET.q }}">
+                <form method="GET" action="" id="searchForm">
                   <input type="text" class="form-control" placeholder="Search Recipes"
                     name="q" value="{{ request.GET.q }}">
               </li>

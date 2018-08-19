@@ -12,7 +12,12 @@ class IndexView(generic.ListView):
     context_object_name = 'recipe_list'
 
     def get_queryset(self):
-        return Recipe.objects.all()
+        query = self.request.GET.get('q')
+        if query:
+            return Recipe.objects.filter(Q(title__icontains=query) |
+                Q(course__iexact=query) | Q(tag__icontains=query))
+        else:
+            return Recipe.objects.all()
 
 class AddRecipeView(generic.CreateView):
     template_name = 'recipes/add_recipe.html'
@@ -35,40 +40,3 @@ class UpdateRecipeView(generic.UpdateView):
     model = Recipe
     template_name = 'recipes/update_recipe.html'
     success_url = '/recipes/'
-
-def searchRecipes(request):
-    if request.method == 'GET':
-        query = request.GET.get('q')
-
-        submitbutton = request.GET.get('submit')
-
-        if query is not None:
-            lookups = (Q(title__icontains=query) |
-                Q(course__iexact=query) | Q(tag__icontains=query))
-            results = Recipe.objects.filter(lookups).distinct()
-            context={'results': results, 'submitbutton': submitbutton}
-            return render(request, 'recipes/search.html', context)
-
-        else:
-            return render(request, 'recipes/search.html')
-
-    else:
-        return render(request, 'recipes/search.html')
-
-
-#class SearchView(generic.ListView):
-#    paginate_by = 20
-
-#    def get_template_names(self):
-#        return ['recipes/search.html']
-
-#    def get_queryset(self):
-#        query = self.request.GET.get('q')
-#        recipes = Recipe.objects.all()
-#        if query:
-#            recipes=recipes.filter(
-#                Q(title__icontains=query) |
-#                Q(tag__icontains=query) |
-#                Q(course__icontains=query)
-#            )
-#        return recipes
