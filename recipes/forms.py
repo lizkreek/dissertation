@@ -2,7 +2,17 @@ from django import forms
 from django.forms import ModelForm
 from .models import Recipe
 
-
+class DateForm(ModelForm):
+    date = forms.DateField(widget=forms.DateInput(
+        attrs={
+            'class': 'form-control',
+            'id': 'datepicker',
+            'required': 'False',
+        }
+        ))
+    class Meta:
+        model = Recipe
+        fields = ['date']    
 
 class RecipeForm(ModelForm):
     title = forms.CharField(widget=forms.TextInput(
@@ -23,6 +33,7 @@ class RecipeForm(ModelForm):
     tag = forms.CharField(widget=forms.TextInput(
         attrs={
             'class':'form-control',
+            'required': False,
         }
     ))
     COURSE_CHOICES = (
@@ -42,6 +53,12 @@ class RecipeForm(ModelForm):
         }))
 
 
+
     class Meta:
         model = Recipe
-        fields = ['title', 'url', 'tag', 'ingredients', 'course']
+        fields = ['title', 'url','ingredients', 'tag', 'course']
+
+    def __init__(self, *args, **kwargs):
+        super(RecipeForm, self).__init__(*args, **kwargs)
+        self.fields['tag'].required = False
+        self.fields['course'].required = False

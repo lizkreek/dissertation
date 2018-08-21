@@ -1,9 +1,14 @@
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView
+from django.views import generic
 from django.urls import reverse
 
-class IndexView(TemplateView):
-    template_name = 'plan/index.html'
+from .models import Recipe
 
-    def get(self, request):
-        return render(request, self.template_name)
+
+
+class IndexView(generic.ListView):
+    template_name = 'plan/index.html'
+    context_object_name = 'recipe_list'
+
+    def get_queryset(self):
+        return Recipe.objects.order_by('date')

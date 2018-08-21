@@ -28,7 +28,7 @@
             <a class="nav-link" href="{% url 'recipes:index' %}">Recipes</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'plan:index' %}">Plan</a>
+            <a class="nav-link" href="{% url 'plan:index'  %}">Plan</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Shop</a>
@@ -57,11 +57,9 @@
                 <form method="GET" action="" id="searchForm">
                   <input type="text" class="form-control" placeholder="Search Recipes"
                     name="q" value="{{ request.GET.q }}">
-              </li>
-              <li class="nav-item p-3">
-                <input type="submit" name="submit" value="Search" class="btn" id="searching">
-              </li>
+                  <input type="submit" name="submit" value="Search" class="btn mt-2 pl-2" id="searching">
               </form>
+              </li>
             </ul>
           </div>
         </nav>
@@ -79,6 +77,30 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+      <style type="text/css">
+        // solution 1:
+        .datepicker {
+            font-size: 0.875em;
+        }
+        /* solution 2: the original datepicker use 20px so replace with the following:*/
+
+        .datepicker td, .datepicker th {
+            width: 1.5em;
+            height: 1.5em;
+        }
+
+    </style>
+      <script type="text/javascript">
+      $('#datepicker').datepicker({
+       weekStart: 1,
+       daysOfWeekHighlighted: "6,0",
+       autoclose: true,
+       todayHighlight: true,
+       required: false
+       });
+       $('#datepicker').datepicker("setDate", new Date());
+       </script>
 
   </body>
 </html>

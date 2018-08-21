@@ -18,6 +18,7 @@
               <div class="card-body">
                 <h5 class="card-title">{{ recipe.title}}</h5>
                 <a href="{% url 'recipes:detail' recipe.id %}" class="btn add-recipe">View Details</a>
+                <a href="{% url 'recipes:add_to_calendar' recipe.id %}">Add to Calendar</a>
               </div>
             </div>
           {% endfor %}

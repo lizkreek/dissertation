@@ -3,7 +3,7 @@ from django.http import Http404
 from django.views import generic
 from django.urls import reverse
 from django.db.models import Q
-from .forms import RecipeForm
+from .forms import RecipeForm, DateForm
 from .models import Recipe
 
 
@@ -21,7 +21,9 @@ class IndexView(generic.ListView):
 
 class AddRecipeView(generic.CreateView):
     template_name = 'recipes/add_recipe.html'
-    form_class = RecipeForm
+    #form_class = RecipeForm
+    model = Recipe
+    fields = ['title', 'url', 'ingredients', 'course', 'tag']
     success_url = '/recipes/'
 
     def form_valid(self, form):
@@ -36,7 +38,13 @@ class RecipeDetailView(generic.DetailView):
 
 
 class UpdateRecipeView(generic.UpdateView):
-    form_class =RecipeForm
+    form_class = RecipeForm
     model = Recipe
     template_name = 'recipes/update_recipe.html'
+    success_url = '/recipes/'
+
+class AddToCalendar(generic.UpdateView):
+    form_class = DateForm
+    model = Recipe
+    template_name = 'recipes/add_to_calendar.html'
     success_url = '/recipes/'

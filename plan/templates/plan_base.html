@@ -25,10 +25,10 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#" style="color: #4C3F54">Recipes <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="{% url 'recipes:index' %}" style="color: #4C3F54">Recipes <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" style="color: #4C3F54">Plan</a>
+            <a class="nav-link" href="{% url 'plan:index' %}" style="color: #4C3F54">Plan</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" style="color: #4C3F54">Shop</a>
@@ -36,13 +36,13 @@
         </ul>
         <ul class="nav justify-content-end">
           <li class="nav-item">
-            <a href="#" class="nav-link" style="color: #4C3F54; padding-right: 2px;">Profile</a>
+            <a href="{% url 'home:profile' %}" class="nav-link" style="color: #4C3F54; padding-right: 2px;">Profile</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link disabled" style="color: #4C3F54; padding-right:0; padding-left:0;">/</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link" style="color: #4C3F54; padding-left: 2px;">Logout</a>
+            <a href="{% url 'home:logout' %}" class="nav-link" style="color: #4C3F54; padding-left: 2px;">Logout</a>
           </li>
         </ul>
       </div>
@@ -54,41 +54,11 @@
           <div class="sidebar-nav">
             <ul class="nav justify-content-start">
               <li class="nav-item p-3">
-                <form>
-                  <input style="background-color: #F7EFE2" type="search" class="form-control" placeholder="Search Recipes" aria-label="Search Recipes">
-                </form>
-              </li>
-              <li class="nav-item p-3">
-                  <div class="form-group">
-                  <select id="inputCourse" class="form-control" style="background-color: #F7EFE2">
-                    <option selected>-Course</option>
-                    {% for course in courses %}
-                    <option>{{ course.course }}</option>
-                    {% endfor %}
-                  </select>
-                </div>
-              </li>
-              <li class="nav-item p-3">
-                <div class="form-group">
-                  <select id="inputTag" class="form-control" style="background-color: #F7EFE2">
-                    <option selected>-Tag</option>
-                    {% for tag in tags %}
-                    <option>{{ tag.tag }}</option>
-                    {% endfor %}
-                  </select>
-                </div>
-              </li>
-              <li class="nav-item p-3">
-                <div class="form-group">
-                  <select id="inputTime" class="form-control" style="background-color: #F7EFE2">
-                    <option selected>-Total time</option>
-                  </select>
-                </div>
-              </li>
-              <li class="nav-item p-3">
-                <form class="my-2 my-lg-0">
-                  <input type="search" class="form-control mr-sm-2" placeholder="Ingredients" aria-label="Ingredients" style="background-color: #F7EFE2">
-                </form>
+                <form method="GET" action="" id="searchForm">
+                  <input type="text" class="form-control" placeholder="Search Recipes"
+                    name="q" value="{{ request.GET.q }}">
+                  <input type="submit" name="submit" value="Search" class="btn mt-2 pl-2" id="searching">
+              </form>
               </li>
             </ul>
           </div>

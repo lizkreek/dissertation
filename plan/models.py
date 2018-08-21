@@ -10,5 +10,7 @@ class Plan(models.Model):
     start_date = models.DateField(auto_now = False, auto_now_add = False)
     end_date = models.DateField(auto_now = False, auto_now_add = False)
 
+    
+
 class MealPlans(models.Model):
     pass

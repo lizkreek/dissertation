@@ -1,5 +1,7 @@
 {% extends 'plan_base.html' %}
 
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,6 +13,7 @@
   <body>
     {% block body %}
     <header>
+      {% if recipe_list %}
                  <h4 class="display-5 mb-3 text-center">August 2018</h4>
                  <div class="row d-none d-sm-flex p-1">
                    <h5 class="col-sm p-1 text-center">Sunday</h5>
@@ -216,7 +219,11 @@
                      <small class="col d-sm-none text-center text-muted">Tuesday</small>
                      <span class="col-1"></span>
                    </h5>
-                   <p class="d-sm-none">No events</p>
+                   {% for recipe in recipe_list %}
+                   {% if recipe.date|date:"SHORT_DATE_FORMAT" == "08/21/2018" %}
+                   <a href="#">{{ recipe.title }}</a>
+                   {% endif %}
+                   {% endfor %}
                  </div>
                  <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate ">
                    <h5 class="row align-items-center">
@@ -224,7 +231,11 @@
                      <small class="col d-sm-none text-center text-muted">Wednesday</small>
                      <span class="col-1"></span>
                    </h5>
-                   <p class="d-sm-none">No events</p>
+                   {% for recipe in recipe_list %}
+                   {% if recipe.date|date:"SHORT_DATE_FORMAT" == "08/22/2018" %}
+                   <a href="#">{{ recipe.title }}</a>
+                   {% endif %}
+                   {% endfor %}
                  </div>
                  <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate ">
                    <h5 class="row align-items-center">
@@ -232,7 +243,11 @@
                      <small class="col d-sm-none text-center text-muted">Thursday</small>
                      <span class="col-1"></span>
                    </h5>
-                   <p class="d-sm-none">No events</p>
+                   {% for recipe in recipe_list %}
+                   {% if recipe.date|date:"SHORT_DATE_FORMAT" == "08/23/2018" %}
+                   <a href="#">{{ recipe.title }}</a>
+                   {% endif %}
+                   {% endfor %}
                  </div>
                  <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate ">
                    <h5 class="row align-items-center">
@@ -240,7 +255,11 @@
                      <small class="col d-sm-none text-center text-muted">Friday</small>
                      <span class="col-1"></span>
                    </h5>
-                   <p class="d-sm-none">No events</p>
+                   {% for recipe in recipe_list %}
+                   {% if recipe.date|date:"SHORT_DATE_FORMAT" == "08/24/2018" %}
+                   <a href="#">{{ recipe.title }}</a>
+                   {% endif %}
+                   {% endfor %}
                  </div>
                  <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate ">
                    <h5 class="row align-items-center">
@@ -248,7 +267,11 @@
                      <small class="col d-sm-none text-center text-muted">Saturday</small>
                      <span class="col-1"></span>
                    </h5>
-                   <p class="d-sm-none">No events</p>
+                   {% for recipe in recipe_list %}
+                   {% if recipe.date|date:"SHORT_DATE_FORMAT" == "08/25/2018" %}
+                   <a href="#">{{ recipe.title }}</a>
+                   {% endif %}
+                   {% endfor %}
                  </div>
                  <div class="w-100"></div>
                  <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate ">
@@ -257,7 +280,11 @@
                      <small class="col d-sm-none text-center text-muted">Sunday</small>
                      <span class="col-1"></span>
                    </h5>
-                   <p class="d-sm-none">No events</p>
+                   {% for recipe in recipe_list %}
+                   {% if recipe.date|date:"SHORT_DATE_FORMAT" == "08/26/2018" %}
+                   <a href="#">{{ recipe.title }}</a>
+                   {% endif %}
+                   {% endfor %}
                  </div>
                  <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate ">
                    <h5 class="row align-items-center">
@@ -265,7 +292,11 @@
                      <small class="col d-sm-none text-center text-muted">Monday</small>
                      <span class="col-1"></span>
                    </h5>
-                   <p class="d-sm-none">No events</p>
+                   {% for recipe in recipe_list %}
+                   {% if recipe.date|date:"SHORT_DATE_FORMAT" == "08/27/2018" %}
+                   <a href="#">{{ recipe.title }}</a>
+                   {% endif %}
+                   {% endfor %}
                  </div>
                  <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate ">
                    <h5 class="row align-items-center">
@@ -273,7 +304,11 @@
                      <small class="col d-sm-none text-center text-muted">Tuesday</small>
                      <span class="col-1"></span>
                    </h5>
-                   <p class="d-sm-none">No events</p>
+                   {% for recipe in recipe_list %}
+                   {% if recipe.date|date:"SHORT_DATE_FORMAT" == "08/28/2018" %}
+                   <a href="#">{{ recipe.title }}</a>
+                   {% endif %}
+                   {% endfor %}
                  </div>
                  <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate ">
                    <h5 class="row align-items-center">
@@ -281,7 +316,11 @@
                      <small class="col d-sm-none text-center text-muted">Wednesday</small>
                      <span class="col-1"></span>
                    </h5>
-                   <p class="d-sm-none">No events</p>
+                   {% for recipe in recipe_list %}
+                   {% if recipe.date|date:"SHORT_DATE_FORMAT" == "08/29/2018" %}
+                   <a href="#">{{ recipe.title }}</a>
+                   {% endif %}
+                   {% endfor %}
                  </div>
                  <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate ">
                    <h5 class="row align-items-center">
@@ -289,7 +328,11 @@
                      <small class="col d-sm-none text-center text-muted">Thursday</small>
                      <span class="col-1"></span>
                    </h5>
-                   <p class="d-sm-none">No events</p>
+                   {% for recipe in recipe_list %}
+                   {% if recipe.date|date:"SHORT_DATE_FORMAT" == "08/30/2018" %}
+                   <a href="#">{{ recipe.title }}</a>
+                   {% endif %}
+                   {% endfor %}
                  </div>
                  <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate d-none d-sm-inline-block bg-light text-muted">
                    <h5 class="row align-items-center">
@@ -297,7 +340,11 @@
                      <small class="col d-sm-none text-center text-muted">Friday</small>
                      <span class="col-1"></span>
                    </h5>
-                   <p class="d-sm-none">No events</p>
+                   {% for recipe in recipe_list %}
+                   {% if recipe.date|date:"SHORT_DATE_FORMAT" == "08/31/2018" %}
+                   <a href="#">{{ recipe.title }}</a>
+                   {% endif %}
+                   {% endfor %}
                  </div>
                  <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate d-none d-sm-inline-block bg-light text-muted">
                    <h5 class="row align-items-center">
@@ -305,9 +352,16 @@
                      <small class="col d-sm-none text-center text-muted">Saturday</small>
                      <span class="col-1"></span>
                    </h5>
-                   <p class="d-sm-none">No events</p>
+                   {% for recipe in recipe_list %}
+                   {% if recipe.date|date:"SHORT_DATE_FORMAT" == "09/01/2018" %}
+                   <a href="#">{{ recipe.title }}</a>
+                   {% endif %}
+                   {% endfor %}
                  </div>
                </div>
+               {% endif %}
+
+
     {% endblock %}
 
   </body>

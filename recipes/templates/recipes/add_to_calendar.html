@@ -1,0 +1,17 @@
+{% extends 'recipes_base.html' %}
+
+{% block body %}
+
+<div class="card">
+  <div class="card-body">
+    <h3>Add to Calendar</h3>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn add-recipe" name="button">Save</button>
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
