@@ -1,18 +1,30 @@
 from django.shortcuts import render, redirect, reverse
 from home.forms import RegistrationForm, EditProfileForm
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash, login, authenticate
 from django.contrib.auth.decorators import login_required
+from django.views import generic
+from django.urls import reverse_lazy
+
 
 def index(request):
     return render(request, 'home/index.html')
+
+#class RegisterView(generic.CreateView):
+#    form_class = RegistrationForm
+#    success_url = reverse_lazy('profile')
+#    template_name = 'home/register.html'
 
 def register(request):
     if request.method =='POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            login(request, user)
             return redirect(reverse('home:view_profile'))
     else:
         form = RegistrationForm()
