@@ -16,7 +16,7 @@
 
   </head>
   <body>
-    <nav class="navbar navbar-fixed-top navbar-expand-lg" role="navigation" id="topnav">
+    <nav class="navbar navbar-fixed-top navbar-expand-lg" role="navigation" style="background-color: #A1BE95; border-bottom: solid 1px #F7EFE2">
       <a class="navbar-brand" href="#" style="color: #4C3F54">What Shall I Eat Tonight?</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -25,24 +25,24 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="{% url 'recipes:index' %}">Recipes</a>
+            <a class="nav-link" href="{% url 'recipes:index' %}" style="color: #4C3F54">Recipes <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'plan:index'  %}">Plan</a>
+            <a class="nav-link" href="{% url 'plan:index' %}" style="color: #4C3F54">Plan</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'shop:index' %}">Shop</a>
+            <a class="nav-link" href="#" style="color: #4C3F54">Shop</a>
           </li>
         </ul>
         <ul class="nav justify-content-end">
           <li class="nav-item">
-            <a href="{% url 'home:view_profile' %}" class="nav-link" style="padding-right: 2px;">Profile</a>
+            <a href="{% url 'home:view_profile' %}" class="nav-link" style="color: #4C3F54; padding-right: 2px;">Profile</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link disabled" style=" padding-right:0; padding-left:0;">/</a>
+            <a href="#" class="nav-link disabled" style="color: #4C3F54; padding-right:0; padding-left:0;">/</a>
           </li>
           <li class="nav-item">
-            <a href="{% url 'home:logout' %}" class="nav-link" style="padding-left: 2px;">Logout</a>
+            <a href="{% url 'home:logout' %}" class="nav-link" style="color: #4C3F54; padding-left: 2px;">Logout</a>
           </li>
         </ul>
       </div>
@@ -65,42 +65,21 @@
         </nav>
         <div class="col-10 col-sm-10 col-lg-9 ml-2">
           <br>
+
+
+
           {% block body %}
 
           {% endblock %}
-          </div>
         </div>
       </div>
+    </div>
 
 
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
-      <style type="text/css">
-        // solution 1:
-        .datepicker {
-            font-size: 0.875em;
-        }
-        /* solution 2: the original datepicker use 20px so replace with the following:*/
-
-        .datepicker td, .datepicker th {
-            width: 1.5em;
-            height: 1.5em;
-        }
-
-    </style>
-      <script type="text/javascript">
-      $('#datepicker').datepicker({
-       weekStart: 1,
-       daysOfWeekHighlighted: "6,0",
-       autoclose: true,
-       todayHighlight: true,
-       required: false
-       });
-       $('#datepicker').datepicker("setDate", new Date());
-       </script>
 
   </body>
 </html>

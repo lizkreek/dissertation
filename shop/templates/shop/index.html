@@ -1,0 +1,14 @@
+{% extends 'shop_base.html' %}
+
+{% block body %}
+
+<h3>Grocery List</h3>
+  {% if recipe_list %}
+    <div class="container">
+      {% for recipe in recipe_list %}
+        <p>{{ recipe.ingredients }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+{% endblock %}
