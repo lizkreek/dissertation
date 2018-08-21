@@ -14,10 +14,11 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         query = self.request.GET.get('q')
         if query:
-            return Recipe.objects.filter(Q(title__icontains=query) |
+            queryset = Recipe.objects.filter( Q(title__icontains=query) |
                 Q(course__iexact=query) | Q(tag__icontains=query))
+            return queryset.filter(user=self.request.user)
         else:
-            return Recipe.objects.all()
+            return Recipe.objects.filter(user=self.request.user)
 
 class AddRecipeView(generic.CreateView):
     template_name = 'recipes/add_recipe.html'
@@ -29,7 +30,7 @@ class AddRecipeView(generic.CreateView):
         # This method is called when valid form data has been POSTed.
         #It should return an HttpResponse.
         form.instance.user = self.request.user
-        return super().form_valid(form)
+        return super(AddRecipeView, self).form_valid(form)
 
 class RecipeDetailView(generic.DetailView):
     model = Recipe

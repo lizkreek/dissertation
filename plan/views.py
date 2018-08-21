@@ -12,4 +12,5 @@ class IndexView(generic.ListView):
     context_object_name = 'recipe_list'
 
     def get_queryset(self):
-        return Recipe.objects.order_by('date')
+        queryset = Recipe.objects.filter(user=self.request.user)
+        return queryset.order_by('date')
