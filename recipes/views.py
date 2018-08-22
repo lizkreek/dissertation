@@ -22,8 +22,7 @@ class IndexView(generic.ListView):
 
 class AddRecipeView(generic.CreateView):
     template_name = 'recipes/add_recipe.html'
-    model = Recipe
-    fields = ['title', 'url', 'ingredients', 'course', 'tag']
+    form_class = RecipeForm
     success_url = '/recipes/'
 
     def form_valid(self, form):

@@ -16,3 +16,5 @@ class UserProfile(models.Model):
 def create_profile(sender, instance, created, **kwargs):
     if created:
         user_profile = UserProfile.objects.create(user=instance)
+
+      
